@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Library App</title>
+    <style>
+      /* body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+      }
+      .books,h1{
+        margin-left: 39%;
+      }
+      .container {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+      }
+      input[type="text"] {
+        padding: 0.6rem;
+        margin-bottom: 10px;
+        border-radius: 1rem;
+      }
+      button {
+        padding: 0.9rem;
+        background-color: #440b01;
+        color: white;
+        border-radius: 1rem;
+        border: none;
+        cursor: pointer;
+      }
+      th,
+      td {
+        padding: 0.5rem;
+      } */
+      body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f2f2f2;
+}
+
+h1 {
+  text-align: center;
+}
+
+.container {
+  display: flex;
+  justify-content: space-around;
+  margin: 20px auto;
+}
+
+.container div {
+  width: 45%;
+}
+
+form {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+input[type="text"],
+button {
+  width: calc(100% - 20px);
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button {
+  background-color: #0a0092;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #b39fff;
+}
+
+.books {
+  max-width: 800px;
+  margin: 20px auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table th, table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+table th {
+  background-color: #f2f2f2;
+}
+
+table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+    </style>
+  </head>
+  <body>
+    <h1>Library - Add and Search Book</h1>
+    <div class="container">
+      <div id="addBookForm">
+        <h2>Add New Book</h2>
+        <form action="/library/new" method="post">
+          <input
+            type="text"
+            name="book[title]"
+            placeholder="Title"
+            required
+          /><br />
+          <input
+            type="text"
+            name="book[author]"
+            placeholder="Author"
+            required
+          /><br />
+          <input
+            type="text"
+            name="book[isbn]"
+            placeholder="ISBN"
+            required
+          /><br />
+          <button>Add Book</button>
+        </form>
+      </div>
+      <div>
+        <h2>Search Book</h2>
+        <form action="/library/search" method="post">
+          <input
+            type="text"
+            name="title"
+            placeholder="Search by Title of Book:"
+            required
+          /><br />
+          <button>Search</button>
+        </form>
+      </div>
+    </div>
+    <hr />
+    <div class="books">
+     
+      <div class="show">
+        <table border="2">
+          <caption>
+            Your Book List
+          </caption>
+          <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>ISBN No:</th>
+          </tr>
+          <% for(book of books) { %>
+          <tr>
+            <td><%= book.title %></td>
+            <td><%= book.author %></td>
+            <td><%= book.isbn %></td>
+          </tr>
+          <%}%>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,25 @@
+PBudget Allocation:
+
+Development Resources: $XX,XXX
+
+Developer salaries
+Design and development tools
+Software licenses
+Infrastructure and Hosting: $X,XXX
+
+Web hosting services
+Domain registration
+Testing and Quality Assurance: $X,XXX
+
+Testing tools and software
+Quality assurance resources
+Documentation and Deployment: $X,XXX
+
+Documentation tools
+Deployment services
+Miscellaneous: $X,XXX (for unforeseen expenses or contingencies)
+
+Total Budget: $XX,XXX
+
+
+This preliminary schedule and 

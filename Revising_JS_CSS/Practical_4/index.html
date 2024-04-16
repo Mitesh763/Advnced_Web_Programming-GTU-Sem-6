@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Calculator</title>
+    <style>
+        .calculator{
+            border: 10px solid black;
+            border-radius: 15px;
+            width: 36.5vw;
+            padding: 10px;
+            justify-content: center;
+        }
+        #ans{
+            width: 35vw;
+            height: 5vh;
+            border: 5px solid black;
+            border-radius: 10px;
+            font-size: 2rem;
+            text-align: right;
+        }
+        button{
+            width: 7.4vw;
+            height: 4vh;
+            margin: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <h1>Simple calculator</h1>
+        <input id="ans" type="text" readonly placeholder=""><br>
+        <button onclick="Display('7')">7</button>
+        <button onclick="Display('8')">8</button>
+        <button onclick="Display('9')">9</button>
+        <button onclick="Display('-')">-</button><br>
+        <button onclick="Display('4')">4</button>
+        <button onclick="Display('5')">5</button>
+        <button onclick="Display('6')">6</button>
+        <button onclick="Display('*')">*</button><br>
+        <button onclick="Display('1')">1</button>
+        <button onclick="Display('2')">2</button>
+        <button onclick="Display('3')">3</button>
+        <button onclick="Display('+')">+</button><br>
+        <button onclick="Display('0')">0</button>
+        <button onclick="Clear()">Cl</button>
+        <button onclick="Display('/')">/</button>
+        <button onclick="calculete()">=</button><br>
+    </div>
+
+    <script>
+        function Display(num){
+            document.getElementById("ans").value += num;
+        }
+        function Clear(){
+            document.getElementById("ans").value ="";
+        }
+        function calculete(){
+            let values = document.getElementById("ans").value;
+            const answer = eval(values);
+            document.getElementById("ans").value = answer;
+        }
+    </script>
+</body>
+</html>

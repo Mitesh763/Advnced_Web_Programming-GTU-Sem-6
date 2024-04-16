@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update</title>
+    <style>
+        h2 {
+        text-align: center;
+      }
+
+      .insert {
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+      }
+      
+      input[type="text"] {
+        width: 300px;
+        padding: 1rem;
+        border-radius: 1rem;
+        margin: 1rem;
+      }
+
+      button {
+        background-color: #000333;
+        color: #fff;
+        padding: 1rem;
+        border-radius: 1rem;
+        margin: 1rem;
+        height: 55px;
+      }
+    </style>
+</head>
+<body>
+    <h2>Update Name</h2>
+    <div class="insert">
+        <form  action="/friend/<%= frd._id %>?_method=PUT" method="post">
+            <input type="text" name="name" id="name" value="<%= frd.name %>" />
+            <input type="text" name="email" id="name" value="<%= frd.email %>" />
+            <input type="text" name="password" id="name" value="<%= frd.password %>" />
+            <button type="submit">Update</button>
+        </form>
+    </div>
+</body>
+</html>

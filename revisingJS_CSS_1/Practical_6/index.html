@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="validationApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation</title>
+    <style>
+        .container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 8px;
+            margin-top: 3px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .error {
+            color: red;
+        }
+        .success {
+            color: green;
+        }
+        button[type="submit"] {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button[type="submit"]:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body>
+    <div class="container" ng-controller="ValidationController">
+        <form name="myForm" ng-submit="submitForm()">
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" ng-model="formData.email" required>
+                <span class="error" ng-show="myForm.email.$dirty && myForm.email.$invalid">Invalid email.</span>
+            </div>
+
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" ng-model="formData.username" required>
+                <span class="error" ng-show="myForm.username.$dirty && myForm.username.$invalid">Username is required.</span>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" ng-model="formData.password" required>
+                <span class="error" ng-show="myForm.password.$dirty && myForm.password.$invalid">Password is required.</span>
+            </div>
+
+            <button type="submit" ng-disabled="myForm.$invalid">Submit</button>
+            <p class="success" ng-show="submitted && myForm.$valid">Form submitted successfully!</p>
+        </form>
+    </div>
+
+    <script>
+        var app = angular.module('validationApp', []);
+
+        app.controller('ValidationController', function($scope) {
+            $scope.formData = {};
+            $scope.submitted = false;
+
+            $scope.submitForm = function() {
+                if ($scope.myForm.$valid) {
+                    $scope.submitted = true;
+                }
+            };
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>practical_2</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .form input[type="text"],
+        .form input[type="number"],
+        .form input[type="email"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .submit {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            border-radius: 4px;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+</head>
+<body ng-app="myapp">
+    <div class="container" ng-controller="studentControl">
+        <form action="" class="form">
+            Enrollment No:<input type="number" placeholder="Enrollment No:" ng-model="student.enro"><br>
+            Name :<input type="text" placeholder="Name" ng-model="student.name"><br>
+            Semester :<input type="number" placeholder="Semester" ng-model="student.sem"><br>
+            Branch :<input type="text" placeholder="Branch" ng-model="student.branch"><br>
+            Mobile NO :<input type="number" placeholder="Mobile No" ng-model="student.mob"><br>
+            Email :<input type="email" placeholder="Email" ng-model="student.email"><br>
+            Address :<input type="text" placeholder="Address" ng-model="student.add"><br>
+            <input class="submit" type="submit" ng-click="submit">
+        </form>
+    
+
+        <h2>info:</h2>
+        <p>Enrollment NO : {{student.enro}} </p>
+        <p>Name : {{student.name}} </p>
+        <p>Semester : {{student.sem}}</p>
+        <p>Branch :{{student.branch}}</p>
+        <p>Mobile NO : {{student.mob}} </p>
+        <p>Eamil : {{student.email}} </p>
+        <p>Address : {{student.add}} </p>
+    
+</div>
+
+<script>
+    var app = angular.module('myapp',[]);
+    console.log(app);
+    app.controller('studentControl',function($scope){
+        $scope.student = {};
+    });
+</script>                                                                                                                   
+</body>
+</html>

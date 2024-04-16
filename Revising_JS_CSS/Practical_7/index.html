@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practical 7</title>
+    <link rel="stylesheet" href="https://cdn.filestackcontent.com/HANDLE">
+</head>
+<body>
+    <h2>Choose html file</h2>
+    choose file <input type="file">
+    <p class="data" style="border: 2px solid black;"></p>
+
+    <script>
+        let fileData = document.querySelector("input[type=file]");
+        let display = document.querySelector(".data");
+
+        fileData.addEventListener("change",async () =>{
+            let [file] = fileData.files;
+
+            if(file){
+                display.innerText = await file.text();
+            }
+        })
+    </script>
+</body>
+</html>

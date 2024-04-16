@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="studentApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px
+        }
+        h2 {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 4px;
+        }
+        table {
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+    </style>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    
+</head>
+<body>
+    <div class="container" ng-controller="StudentController">
+        <form ng-submit="addStudent()">
+            <h2>Student Details</h2>
+            Enrolment No.:<input type="text" id="enrollment" ng-model="newStudent.enrollmentNo" required><br>
+            Name:<input type="text" id="name" ng-model="newStudent.name" required><br>
+            Semester:<input type="text" id="semester" ng-model="newStudent.semester" required><br>
+            Branch:<input type="text" id="branch" ng-model="newStudent.branch" required><br>
+            Mobile Number:<input type="text" id="mobile" ng-model="newStudent.mobile" required><br>
+            Email:<input type="email" id="email" ng-model="newStudent.email" required><br>
+            Address:<textarea id="address" ng-model="newStudent.address" required></textarea><br>
+            <input type="submit" value="Add Student">
+        </form>
+
+        <table border="2">
+            <thead>
+                <tr>
+                    <th>Enrolment No.</th>
+                    <th>Name</th>
+                    <th>Semester</th>
+                    <th>Branch</th>
+                    <th>Mobile Number</th>
+                    <th>Email Address</th>
+                    <th>Address</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="student in students">
+                    <td>{{ student.enrollmentNo }}</td>
+                    <td>{{ student.name }}</td>
+                    <td>{{ student.semester }}</td>
+                    <td>{{ student.branch }}</td>
+                    <td>{{ student.mobile }}</td>
+                    <td>{{ student.email }}</td>
+                    <td>{{ student.address }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        angular.module('studentApp', [])
+            .controller('StudentController', function($scope) {
+                $scope.students = [];
+
+                $scope.addStudent = function() {
+                    $scope.students.push(angular.copy($scope.newStudent));
+                    $scope.newStudent = {}; // Clear the form fields after adding the student
+                };
+            });
+    </script>
+</body>
+</html>

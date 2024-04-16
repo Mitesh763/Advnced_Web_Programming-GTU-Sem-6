@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>File Operations</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pako/2.0.3/pako.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"></script>
+    <style>
+      #downloadLink {
+        margin-top: 20px;
+        display: none;
+      }
+      button,
+      input {
+        margin-top: 10px;
+        background-color: rgb(126, 75, 0);
+        color: white;
+        padding: 0.4rem;
+        border-radius: 0.5rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>File Operations</h1>
+      <input type="file" id="fileInput" /><br />
+      <button id="btnSync" onclick="readFileSync()">
+        Read File Synchronously
+      </button>
+      <button id="btnAsync" onclick="readFileAsync()">
+        Read File Asynchronously
+      </button>
+      <button id="btnCompress" onclick="compressFile()">Compress File</button>
+      <button id="btnDecompress" onclick="decompressFile()">
+        Decompress File
+      </button>
+      <div id="message"></div>
+      <a id="downloadLink" download="compressed_file.txt"
+        >Download Compressed File</a
+      >
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pako/2.0.3/pako.min.js"></script>
+    <script>
+      function readFileSync() {
+        const file = document.getElementById("fileInput").files[0];
+        if (!file) {
+          alert("Please select a file.");
+          return;
+        }
+        const reader = new FileReader();
+        reader.onload = function (event) {
+          const contents = event.target.result;
+          alert("File contents (synchronous read):\n" + contents); // Displaying file contents in an alert
+          displayMessage("File read synchronously successfully.");
+        };
+        reader.readAsText(file);
+      }
+      function readFileAsync() {
+        const file = document.getElementById("fileInput").files[0];
+        if (!file) {
+          alert("Please select a file.");
+          return;
+        }
+        const reader = new FileReader();
+        reader.onload = function (event) {
+          const contents = event.target.result;
+          alert("File contents (asynchronous read):\n" + contents); // Displaying file contents in an alert
+          displayMessage("File read asynchronously successfully.");
+        };
+        reader.readAsText(file);
+      }
+      function compressFile() {
+        const file = document.getElementById("fileInput").files[0];
+        if (!file) {
+          alert("Please select a file.");
+          return;
+        }
+        const reader = new FileReader();
+        reader.onload = function (event) {
+          const contents = event.target.result;
+          const zip = new JSZip();
+          zip.file(file.name, contents);
+          zip.generateAsync({ type: "blob" }).then(function (blob) {
+            alert("File compressed successfully.");
+            downloadCompressedFile(blob);
+          });
+        };
+        reader.readAsArrayBuffer(file);
+      }
+
+      function decompressFile() {
+        const fileInput = document.getElementById("fileInput");
+        const file = fileInput.files[0];
+
+        if (!file) {
+          alert("Please select a file.");
+          return;
+        }
+
+        const reader = new FileReader();
+
+        reader.onload = function (event) {
+          try {
+            const compressedData = event.target.result;
+            JSZip.loadAsync(compressedData).then(function (zip) {
+              const file = zip.file(/.*/)[0]; // Assuming there's only one file in the zip
+              file.async("text").then(function (contents) {
+                alert("Decompressed file contents:\n" + contents);
+                downloadDecompressedFile(contents);
+              });
+            });
+          } catch (error) {
+            console.error("Error decompressing file:", error);
+            alert(
+              "Error decompressing file. Please make sure the file is compressed and in the correct format."
+            );
+          }
+        };
+
+        reader.readAsArrayBuffer(file);
+      }
+
+      function downloadDecompressedFile(contents) {
+        const blob = new Blob([contents], { type: "text/plain" });
+        const url = window.URL.createObjectURL(blob);
+        const downloadLink = document.createElement("a");
+        downloadLink.href = url;
+        downloadLink.setAttribute("download", "decompressed_file.txt");
+        downloadLink.textContent = "Download Decompressed File";
+        downloadLink.style.display = "block";
+        document.body.appendChild(downloadLink);
+      }
+
+      function downloadCompressedFile(blob) {
+        const url = window.URL.createObjectURL(blob);
+        const downloadLink = document.getElementById("downloadLink");
+        downloadLink.href = url;
+        downloadLink.style.display = "block";
+        downloadLink.download = "compressed_file.zip"; // Set download attribute to specify file name
+      }
+    </script>
+  </body>
+</html>

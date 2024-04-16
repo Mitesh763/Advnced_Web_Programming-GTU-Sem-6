@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class And Object</title>
+</head>
+<body>
+    <script>
+        class Cars {
+            constructor(carModal,carColor,carPrice,carSpeed){
+                this.carModal = carModal;
+                this.carColor = carColor;
+                this.carPrice = carPrice;
+                this.carSpeed = carSpeed;
+            }
+            dispaySpeed(s){
+                return s;
+            }
+            increaseSpeed(s){
+                return this.carSpeed += s;
+            }
+            descreaseSpeed(s){
+                return this.carSpeed -= s;
+            }
+        }
+
+        let car = new Cars("Rolls Royce Ghost","Silver Sand","7.95 Cr",250);
+        console.log(car);
+        console.log(car.dispaySpeed(155))
+    </script>
+</body>
+</html>

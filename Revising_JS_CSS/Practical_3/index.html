@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prime Number</title>
+</head>
+
+<body>
+    <h1>Prime Number checker</h1>
+    <input id="num" type="number" placeholder="Enter number">
+    <input type="submit" onclick="primechecker()">  
+    <p class="ans"></p>
+
+    <script>
+        const primechecker = () => {
+            let number1 = document.getElementById("num").value;
+            let answer = document.querySelector(".ans");
+
+            var count = 0;
+            for (let i = 1; i <= number1; i++) {
+                if (number1 % i === 0) {
+                    count++;
+                }
+            }
+            if (count === 2) {
+                // console.log("prime")
+                answer.innerText = `${number1} is Prime Number`;
+            }
+            else {
+                answer.innerText = `${number1} is not Prime Number`;
+                // console.log("not prime")
+            }
+
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="routingApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AngularJS Routing Example</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.min.js"></script>
+</head>
+<body>
+    <div ng-view></div>
+
+    <script>
+        var app = angular.module('routingApp', ['ngRoute']);
+
+        app.config(function($routeProvider) {
+            $routeProvider
+                .when('/', {
+                    templateUrl: 'home.html',
+                    controller: 'HomeController'
+                })
+                .when('/about', {
+                    templateUrl: 'about.html',
+                    controller: 'AboutController'
+                })
+                .when('/contact', {
+                    templateUrl: 'contact.html',
+                    controller: 'ContactController'
+                })
+                .otherwise({ redirectTo: '/' });
+        });
+
+        app.controller('HomeController', function($scope) {
+            $scope.message = 'Welcome to the Home Page';
+        });
+
+        app.controller('AboutController', function($scope) {
+            $scope.message = 'About Us: We are AngularJS experts';
+        });
+
+        app.controller('ContactController', function($scope) {
+            $scope.message = 'Contact Us: Reach out to us for any queries';
+        });
+    </script>
+</body>
+</html>
